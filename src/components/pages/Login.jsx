@@ -1,23 +1,21 @@
 import { useState } from "react";
-// import { Navigate } from "react-router-dom";
-import { createContactThunk } from "redux/store/thunk";
+import { useNavigate } from "react-router-dom";
+import { login } from "services/contactsApi";
 
 const LoginPage = () => {
-
-    // const [username, setUsername] = useState('');
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [confirmPassword, setConfirmPassword] = useState('');
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newUser = {
+
+        const userLogin = {
             email: event.target.email.value,
             password: event.target.password.value
         }
-        createContactThunk(newUser).then(()=> {console.log('user created');})
-        // Navigate('/contactForm')
-        // addContactsThunk(newUser).then(() => console.log('created')).catch((error) => console.log(error.message[0]))
+        login(userLogin).then(console.log)
       }
 
     return (
@@ -28,11 +26,13 @@ const LoginPage = () => {
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} required /><br />
   
-          <label htmlFor="password">Пароль:</label>
+          <label htmlFor="password">Password:</label>
           <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} required /><br />
 
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit">LOGIN</button>
+          <button onClick={() => navigate("/signUp")}>SIGNUP</button>
         </form>
+
       </div>
     )
 }

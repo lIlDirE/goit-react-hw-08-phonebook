@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signup } from 'services/contactsApi';
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate()
   const handleSubmit = event => {
     event.preventDefault();
     const newUser = {
@@ -14,16 +15,19 @@ const RegistrationPage = () => {
       password: event.target.password.value,
     };
 
-    signup(newUser)
-      .then(() => console.log('created'))
-      .catch((error) => console.log(error));
+      signup(newUser)
+      .then(()=> {
+        console.log('user created')
+        navigate('/login')
+      })
+      .catch((error) => console.log(error))  
   };
 
   return (
     <div>
       <h1>Регистрация</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Имя пользователя:</label>
+        <label htmlFor="username">username:</label>
         <input
           type="text"
           id="username"
@@ -43,7 +47,7 @@ const RegistrationPage = () => {
         />
         <br />
 
-        <label htmlFor="password">Пароль:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
@@ -52,18 +56,8 @@ const RegistrationPage = () => {
           required
         />
         <br />
-        {/* 
-        <label htmlFor="confirm_password">Подтвердите пароль:</label>
-        <input
-          type="password"
-          id="confirm_password"
-          value={confirmPassword}
-          onChange={event => setConfirmPassword(event.target.value)}
-          required
-        />
-        <br /> */}
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">SIGNUP</button>
       </form>
     </div>
   );

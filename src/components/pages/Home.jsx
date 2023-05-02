@@ -7,8 +7,8 @@ function HomePage() {
         <h1>Phonebook</h1>
         <p>Для продолжения работы необходимо авторизоваться или зарегистрироваться.</p>
         <div>
-          <button onClick={() => navigate("/login")}>Авторизация</button>
-          <button onClick={() => navigate("/signUp")}>Регистрация</button>
+          <button onClick={() => navigate("/login")}>LOGIN</button>
+          <button onClick={() => navigate("/signUp")}>SIGNUP</button>
         </div>
       </div>
     );
