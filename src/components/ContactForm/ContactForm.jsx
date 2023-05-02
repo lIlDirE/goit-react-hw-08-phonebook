@@ -8,7 +8,7 @@ import {
   FormInput,
   Label,
 } from './ContactForm.styled';
-import { addContactsThunk } from 'redux/store/thunk';
+import { createContactThunk } from 'redux/store/thunk';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -38,9 +38,6 @@ export default function ContactForm() {
     }
   };
 
-
-
-
   const handleSubmitForm = e => {
 
 
@@ -57,7 +54,7 @@ export default function ContactForm() {
       )
     ) {alert(`${name} is already in contacts`)} 
 	else {
-      dispatch(addContactsThunk(newContact));
+      dispatch(createContactThunk(newContact));
 	  resetForm()
     }
   };
