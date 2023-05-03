@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Children } from 'react';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
