@@ -16,7 +16,7 @@ const handleFulfilled = state => {
 };
 
 const handleFulfilledGet = (state, { payload }) => {
-  // state.items = [...payload];
+  state.items = [...payload];
 };
 
 const handleFulfilledAdd = (state, { payload }) => {
@@ -24,9 +24,7 @@ const handleFulfilledAdd = (state, { payload }) => {
 };
 
 const handleFulfilledDelete = (state, { payload }) => {
-
   state.items = state.items.filter(el => el.id !== payload.id);
-  console.log(state.items.filter(el => el.id !== payload.id));
 };
 
 const handleRejected = (state, action) => {
@@ -72,9 +70,3 @@ export const contactsSlice = createSlice({
 export const contactReducer = contactsSlice.reducer;
 
 export const { addContact, removeContact } = contactsSlice.actions;
-
-//  reducers: {
-//     addContact: (state, action) => [...state, action.payload],
-//     removeContact: (state, action) =>
-//       state.filter(contact => contact.id !== action.payload),
-//   },

@@ -1,40 +1,53 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { login } from "services/contactsApi";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginThunk } from 'redux/store/thunk';
 
 const LoginPage = () => {
-    const navigate = useNavigate()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const dispatch = useDispatch;
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const userLogin = {
-            email: event.target.email.value,
-            password: event.target.password.value
-        }
-        login(userLogin).then(console.log)
-      }
-
-    return (
-        <div>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} required /><br />
-  
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} required /><br />
-
-          <button type="submit">LOGIN</button>
-          <button onClick={() => navigate("/signUp")}>SIGNUP</button>
-        </form>
-
-      </div>
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(
+      loginThunk({
+        email: event.target.email.value,
+        password: event.target.password.value,
+      })
     )
-}
+  };
 
-export default LoginPage
+  return (
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          required
+        />
+        <br />
+
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+          required
+        />
+        <br />
+
+        <button type="submit">LOGIN</button>
+        <button onClick={() => navigate('/signUp')}>SIGNUP</button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginPage;
