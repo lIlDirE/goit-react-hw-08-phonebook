@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Children } from 'react';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -53,6 +54,7 @@ export const login = async contact => {
   try {
     const { data } = await axios.post('/users/login', contact);
     setToken(data.token);
+    console.log(data.token);
 
     return data;
   } catch (error) {

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/store/thunk';
 
 const LoginPage = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
