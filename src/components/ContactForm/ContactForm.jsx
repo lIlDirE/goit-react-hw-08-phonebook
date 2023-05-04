@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import { createContactThunk } from 'redux/store/thunk';
 import {
   FormContact,
   LabelContact,
@@ -8,19 +9,24 @@ import {
   FormInput,
   Label,
 } from './ContactForm.styled';
-import { createContactThunk } from 'redux/store/thunk';
+import { logOut } from 'redux/store/auth/authSlice';
+import { dellToken } from 'services/contactsApi';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ContactForm() {
+  const { profile } = useSelector(state => state.auth);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
-
-
+  const navigate = useNavigate();
   function resetForm() {
     setName('');
     setNumber('');
   }
+
+
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -39,8 +45,6 @@ export default function ContactForm() {
   };
 
   const handleSubmitForm = e => {
-
-
     e.preventDefault();
 
     const newContact = {
@@ -49,19 +53,33 @@ export default function ContactForm() {
       number,
     };
 
-    if (contacts.find(
+
+
+    if (
+      contacts.find(
         contact => newContact.name.toLowerCase() === contact.name.toLowerCase()
       )
-    ) {alert(`${name} is already in contacts`)} 
-	else {
+    ) {
+      alert(`${name} is already in contacts`);
+    } else {
       dispatch(createContactThunk(newContact));
-	  resetForm()
+      resetForm();
     }
   };
-  
+
+  const handleLogOut = () => {
+    dispatch(logOut())
+    dellToken()
+    navigate('/')
+  }
+
   return (
     <Label>
       <h1>Phonebook</h1>
+      {profile&&<div>{profile.name}</div>}
+      <header>
+        <button onClick={handleLogOut}>Logout</button>
+      </header>
       <FormContact onSubmit={handleSubmitForm}>
         <FormDiv>
           <LabelContact>
@@ -71,9 +89,9 @@ export default function ContactForm() {
               name="name"
               value={name}
               onInput={handleChange}
-			  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-			  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-			  required
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
             />
           </LabelContact>
 

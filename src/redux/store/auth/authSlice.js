@@ -1,36 +1,58 @@
-import { loginThunk } from "../thunk";
+import { getContactsThunk, loginThunk } from '../thunk';
 
-const { createSlice } = require("@reduxjs/toolkit");
+const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 
 const initialState = {
-    access_token: '',
-    isLoading: false,
-    error: ''
-}
+  access_token: '',
+  isLoading: false,
+  error: '',
+  profile: null,
+};
 
-const handlePending = (state, {payload}) => {
-    state.isLoading = true
-}
+const handlePending = (state, { payload }) => {
+  state.isLoading = true;
+};
 
-const handleFulfilled = (state, {payload}) => {
-    state.isLoading = false
-    state.error = ''
-    state.access_token = payload.access_token
-}
-const handleRejected = (state, {payload}) => {
-    state.isLoading = false
-    state.error = ''
-}
+const handleFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = '';
+  state.access_token = payload.token;
+};
 
-const authSlice = createSlice ({
-    name: 'auth',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(loginThunk.pending, handlePending)
-        builder.addCase(loginThunk.fulfilled, handleFulfilled)
-        builder.addCase(loginThunk.rejected, handleRejected)
-    }
-})
+const getFulfilledProfile = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = '';
+  state.profile = payload.data;
+};
 
-export const authReducer = authSlice.reducer
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    logOut(state) {
+      state.profile = null;
+      state.access_token = '';
+    },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(loginThunk.fulfilled, handleFulfilled)
+      .addCase(getContactsThunk.fulfilled, getFulfilledProfile)
+      .addMatcher(
+        isAnyOf(loginThunk.pending, getContactsThunk.pending),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(loginThunk.rejected, getContactsThunk.rejected),
+        handleRejected
+      );
+  },
+});
+console.log(authSlice);
+export const authReducer = authSlice.reducer;
+export const {logOut} = authSlice.actions

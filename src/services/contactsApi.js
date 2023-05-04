@@ -42,7 +42,6 @@ export const signup = async contact => {
   try {
     const { data } = await axios.post('/users/signup', contact);
     setToken(data.token);
-
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -52,7 +51,7 @@ export const signup = async contact => {
 export const login = async contact => {
   try {
     const { data } = await axios.post('/users/login', contact);
-    setToken(data.token);
+    setToken(`Bearer ${data.token}`);
     console.log(data.token);
 
     return data;
