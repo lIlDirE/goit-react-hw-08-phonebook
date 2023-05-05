@@ -9,14 +9,16 @@ const initialState = {
   profile: null,
 };
 
-const handlePending = (state, { payload }) => {
+const handlePending = (state) => {
   state.isLoading = true;
 };
 
 const handleFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
+
   state.access_token = payload.token;
+  state.profile = payload.user.name
 };
 
 const getFulfilledProfile = (state, { payload }) => {
@@ -53,6 +55,6 @@ const authSlice = createSlice({
       );
   },
 });
-console.log(authSlice);
+
 export const authReducer = authSlice.reducer;
 export const {logOut} = authSlice.actions

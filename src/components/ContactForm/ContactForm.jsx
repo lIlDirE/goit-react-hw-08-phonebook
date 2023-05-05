@@ -13,20 +13,19 @@ import { logOut } from 'redux/store/auth/authSlice';
 import { dellToken } from 'services/contactsApi';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function ContactForm() {
-  const { profile } = useSelector(state => state.auth);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { profile } = useSelector(state => state.signup);
+  const contacts = useSelector(state => state.contact.items);
+  const state = useSelector(state => state);
+	console.log(state);
   function resetForm() {
     setName('');
     setNumber('');
   }
-
-
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -53,8 +52,6 @@ export default function ContactForm() {
       number,
     };
 
-
-
     if (
       contacts.find(
         contact => newContact.name.toLowerCase() === contact.name.toLowerCase()
@@ -68,17 +65,22 @@ export default function ContactForm() {
   };
 
   const handleLogOut = () => {
-    dispatch(logOut())
-    dellToken()
-    navigate('/')
-  }
-
+    dispatch(logOut());
+    dellToken();
+    navigate('/');
+  };
   return (
     <Label>
-      <h1>Phonebook</h1>
-      {profile&&<div>{profile.name}</div>}
       <header>
-        <button onClick={handleLogOut}>Logout</button>
+        <h1>Phonebook</h1>
+        {profile === null && navigate('/login')}
+        {profile && <div>{profile.name}</div>}
+
+        {profile !== null ? (
+          <button onClick={handleLogOut}>Logout</button>
+        ) : (
+          <button>Login</button>
+        )}
       </header>
       <FormContact onSubmit={handleSubmitForm}>
         <FormDiv>

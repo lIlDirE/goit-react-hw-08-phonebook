@@ -19,9 +19,6 @@ export const currentUserThunk = createAsyncThunk(
   async contact => currentUser(contact)
 );
 
-
-
-
 export const createContactThunk = createAsyncThunk(
   'contacts/addContact',
   async contact => addContact(contact)

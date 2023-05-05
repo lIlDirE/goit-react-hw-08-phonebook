@@ -1,20 +1,20 @@
+import { getContactsThunk } from 'redux/store/thunk';
 import ContactListElement from './ContactListElement/ContactListElement';
 import { useSelector } from 'react-redux';
 
-import { getContactsThunk } from "redux/store/thunk";
 
 const { useEffect } = require("react");
 const { useDispatch } = require("react-redux");
 
 const ContactList = () => {
 
-// const dispatch = useDispatch();
-// useEffect(() => {
-//   dispatch(getContactsThunk());
-// }, [dispatch]);
+const dispatch = useDispatch();
+useEffect(() => {
+  dispatch(getContactsThunk());
+}, [dispatch]);
 
   const filter = useSelector(state => state.filter);
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.contact.items);
   const visibleContacts = contacts.filter(el =>
     el.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -27,5 +27,6 @@ const ContactList = () => {
     </>
   );
 };
+  
 
 export default ContactList;
