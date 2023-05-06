@@ -25,7 +25,7 @@ const LoginPage = () => {
   
     .unwrap().then(() => {
       getContactsThunk()
-      navigate('/contacts')
+      isAuth&&navigate('/contacts')
     })
       .catch(error => console.log(error))
   };
