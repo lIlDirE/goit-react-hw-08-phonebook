@@ -20,13 +20,11 @@ import { useNavigate } from 'react-router-dom';
 const pages = ['Home'];
 const settings = [];
 
-
-
-
 export const Header = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const token = useSelector(state => state.signup.user.user);
+    const token = useSelector(state => state.signup.token);
+	const userName = useSelector(state => state.signup.user);
     const [setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,10 +46,12 @@ export const Header = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        
+	
             <button onClick={handleLogOut}>Logout</button>
-            {token === null && navigate('/login')}
-        {token && <div>{token.name}</div>}
+            {!token && navigate('/login')}
+        {userName && 
+		<h3>{userName}</h3>
+		}
         
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography

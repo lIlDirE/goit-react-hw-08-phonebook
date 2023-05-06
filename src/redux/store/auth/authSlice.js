@@ -3,11 +3,10 @@ import { getContactsThunk, loginThunk } from '../thunk';
 const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 
 const initialState = {
-  access_token: '',
+  token: '',
   isLoading: false,
   error: '',
-  profile: null,
-  user: null
+  user: null,
 };
 
 const handlePending = (state) => {
@@ -15,16 +14,13 @@ const handlePending = (state) => {
 };
 
 const handleFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.isLoading = false;
   state.error = '';
-
-  state.access_token = payload.token;
-  state.signup = payload
+  state.token = payload.token;
+  state.user = payload.user.name;
 };
 
 const getFulfilledProfile = (state, { payload }) => {
-
   state.isLoading = false;
   state.error = '';
   state.profile = payload.data;

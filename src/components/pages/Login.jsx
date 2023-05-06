@@ -18,8 +18,7 @@ const LoginPage = () => {
         password: event.target.password.value,
       })
     )
-    .unwrap().then((data) => {
-      console.log(data.user.name)
+    .unwrap().then(() => {
       navigate('/contacts')
     })
     .catch(error => {
