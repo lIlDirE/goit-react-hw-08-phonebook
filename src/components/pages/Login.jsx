@@ -10,10 +10,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // useEffect (() => {
-  //   isAuth&&navigate('/contacts')
-  // }, [isAuth, navigate])
-
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(
@@ -23,8 +19,6 @@ const LoginPage = () => {
       })
     )
     .unwrap().then(() => {
-      console.log(isAuth);
-      // navigate('/contacts')
       isAuth&&navigate('/contacts')
     })
       .catch(error => console.log(error))

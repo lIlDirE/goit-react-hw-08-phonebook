@@ -20,8 +20,7 @@ export function App() {
   useEffect(() => {
     token &&
       dispatch(currentUserThunk(token))
-      
-        .unwrap(console.log(token))
+        .unwrap()
         .then(() => {
           dispatch(getContactsThunk(token))
             .unwrap()
