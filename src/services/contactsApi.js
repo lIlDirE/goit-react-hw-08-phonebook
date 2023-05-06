@@ -52,7 +52,6 @@ export const login = async contact => {
   try {
     const { data } = await axios.post('/users/login', contact);
     setToken(`Bearer ${data.token}`);
-
     return data;
   } catch (error) {
     return Promise.reject(error.message);

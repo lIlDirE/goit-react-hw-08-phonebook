@@ -9,16 +9,12 @@ import {
   FormInput,
   Label,
 } from './ContactForm.styled';
-import { logOut } from 'redux/store/auth/authSlice';
-import { dellToken } from 'services/contactsApi';
-import { useNavigate } from 'react-router-dom';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { profile } = useSelector(state => state.signup);
+
   const contacts = useSelector(state => state.contact.items);
 
 
@@ -64,24 +60,10 @@ export default function ContactForm() {
     }
   };
 
-  const handleLogOut = () => {
-    dispatch(logOut());
-    dellToken();
-    navigate('/');
-  };
+
   return (
     <Label>
-      <header>
-        <h1>Phonebook</h1>
-        {profile === null && navigate('/login')}
-        {profile && <div>{profile.name}</div>}
-
-        {profile !== null ? (
-          <button onClick={handleLogOut}>Logout</button>
-        ) : (
-          <button>Login</button>
-        )}
-      </header>
+      <h3>Add new contact</h3>
       <FormContact onSubmit={handleSubmitForm}>
         <FormDiv>
           <LabelContact>

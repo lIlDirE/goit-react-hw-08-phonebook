@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['signup'],
+  whitelist: ['signup', 'contact'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -38,15 +38,6 @@ const store = configureStore({
 	},
   }),
 });
-
-// export const store = configureStore({
-//   reducer: {
-//     contact: contactReducer	,
-//     filter: filterReducer,
-//     signup: persistedReducer,
-//   },
-
-// });
 
 export const persistor = persistStore(store);
 export default store;

@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   error: '',
   profile: null,
+  user: null
 };
 
 const handlePending = (state) => {
@@ -14,14 +15,16 @@ const handlePending = (state) => {
 };
 
 const handleFulfilled = (state, { payload }) => {
+  console.log(payload);
   state.isLoading = false;
   state.error = '';
 
   state.access_token = payload.token;
-  state.profile = payload.user.name
+  state.signup = payload
 };
 
 const getFulfilledProfile = (state, { payload }) => {
+
   state.isLoading = false;
   state.error = '';
   state.profile = payload.data;

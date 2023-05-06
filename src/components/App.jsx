@@ -1,21 +1,20 @@
-// import Loader from './Loader/Loader.js';
-import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout.jsx';
-import RegistrationPage from './pages/RegistrationPage.jsx';
 import LoginPage from './pages/Login.jsx';
 import { Contacts } from './pages/Contacts.jsx';
+import { Route, Routes } from 'react-router-dom';
+import RegistrationPage from './pages/RegistrationPage.jsx';
+
 import { currentUserThunk, getContactsThunk } from 'redux/store/thunk.js';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectToken } from 'redux/selector/selectors';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
+
 import { logout } from 'services/contactsApi.js';
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
   const dispatch = useDispatch();
-  const token = useSelector(state => state.signup.access_token)
+  const token = useSelector(state => state.signup.access_token);
 
   useEffect(() => {
     token &&
@@ -45,17 +44,9 @@ export function App() {
         <Route path="/" element={<Layout />}></Route>
         <Route path="/signUp" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<Contacts />} />		
+        <Route path="/contacts" element={<Contacts />} />
       </Routes>
+      <ToastContainer />
     </>
-    // <div>
-    //   <ContactForm />
-    //   <SearchFilter/>
-    //   <ContactList/>
-    //   {isLoading &&(
-    //   <Loader />
-    //   )}
-
-    // </div>
   );
 }

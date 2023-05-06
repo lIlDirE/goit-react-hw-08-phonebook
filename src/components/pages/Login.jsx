@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getContactsThunk, loginThunk } from 'redux/store/thunk';
+import { loginThunk } from 'redux/store/thunk';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
-  const isAuth = useSelector(state => state.signup.access_token)
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -18,13 +18,19 @@ const LoginPage = () => {
         password: event.target.password.value,
       })
     )
-    .unwrap().then(() => {
-      isAuth&&navigate('/contacts')
+    .unwrap().then((data) => {
+      console.log(data.user.name)
+      navigate('/contacts')
     })
-      .catch(error => console.log(error))
+    .catch(error => {
+      if (error.message === 'Unauthorized') {
+        toast.error(error.message);
+      } else toast.error('Sorry something went wrong try again');
+    })
   };
 
   return (
+    <>
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
@@ -50,9 +56,13 @@ const LoginPage = () => {
 
         <button type="submit">LOGIN</button>
         <button onClick={() => navigate('/signUp')}>SIGNUP</button>
+
       </form>
     </div>
+    </>
   );
 };
 
-export default LoginPage;
+
+
+export default LoginPage

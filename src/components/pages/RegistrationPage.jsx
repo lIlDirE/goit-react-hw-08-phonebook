@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from 'services/contactsApi';
+import { toast } from 'react-toastify';
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
@@ -17,10 +18,10 @@ const RegistrationPage = () => {
 
       signup(newUser)
       .then(()=> {
-        console.log('user created')
+        toast.success('User created')
         navigate('/login')
       })
-      .catch((error) => console.log(error))  
+      .catch((error) => toast.error(error))  
   };
 
   return (
