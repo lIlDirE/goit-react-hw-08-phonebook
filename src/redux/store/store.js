@@ -19,7 +19,6 @@ const rootReducer = combineReducers({
   contact: contactReducer,
   filter: filterReducer,
   signup: authReducer,
-
 });
 
 const persistConfig = {
