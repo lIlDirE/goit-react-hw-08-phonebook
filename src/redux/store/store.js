@@ -19,12 +19,7 @@ const rootReducer = combineReducers({
   contact: contactReducer,
   filter: filterReducer,
   signup: authReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+
 });
 
 const persistConfig = {
@@ -37,6 +32,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware({
+	serializableCheck: {
+	  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+	},
+  }),
 });
 
 // export const store = configureStore({
