@@ -26,7 +26,7 @@ export const createContactThunk = createAsyncThunk(
 
 export const getContactsThunk = createAsyncThunk(
   'contacts/fetchAll',
-  async () => getContacts()
+  async contact => getContacts(contact)
 );
 
 export const deleteContactsThunk = createAsyncThunk(

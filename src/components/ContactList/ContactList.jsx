@@ -1,17 +1,17 @@
-import { getContactsThunk } from 'redux/store/thunk';
+// import { getContactsThunk } from 'redux/store/thunk';
 import ContactListElement from './ContactListElement/ContactListElement';
 import { useSelector } from 'react-redux';
 
 
-const { useEffect } = require("react");
-const { useDispatch } = require("react-redux");
+// const { useEffect } = require("react");
+// const { useDispatch } = require("react-redux");
 
 const ContactList = () => {
 
-const dispatch = useDispatch();
-useEffect(() => {
-  dispatch(getContactsThunk());
-}, [dispatch]);
+// const dispatch = useDispatch();
+// useEffect(() => {
+//   dispatch(getContactsThunk());
+// }, [dispatch]);
 
   const filter = useSelector(state => state.filter);
   const contacts = useSelector(state => state.contact.items);

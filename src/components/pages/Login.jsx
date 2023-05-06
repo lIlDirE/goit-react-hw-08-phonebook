@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getContactsThunk, loginThunk } from 'redux/store/thunk';
 
 const LoginPage = () => {
-  // const isAuth = useSelector(state => state.signup.access_token)
+  const isAuth = useSelector(state => state.signup.access_token)
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -22,11 +22,10 @@ const LoginPage = () => {
         password: event.target.password.value,
       })
     )
-  
     .unwrap().then(() => {
-      getContactsThunk()
-      navigate('/contacts')
-      // isAuth&&navigate('/contacts')
+      console.log(isAuth);
+      // navigate('/contacts')
+      isAuth&&navigate('/contacts')
     })
       .catch(error => console.log(error))
   };
