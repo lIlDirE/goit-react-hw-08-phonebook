@@ -20,8 +20,8 @@ export default function ContactForm() {
   const navigate = useNavigate();
   const { profile } = useSelector(state => state.signup);
   const contacts = useSelector(state => state.contact.items);
-  const state = useSelector(state => state);
-	console.log(state);
+
+
   function resetForm() {
     setName('');
     setNumber('');

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginThunk } from 'redux/store/thunk';
+import { getContactsThunk, loginThunk } from 'redux/store/thunk';
 
 const LoginPage = () => {
   const isAuth = useSelector(state => state.signup.access_token)
@@ -10,9 +10,9 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect (() => {
-    isAuth&&navigate('/contacts')
-  }, [isAuth, navigate])
+  // useEffect (() => {
+  //   isAuth&&navigate('/contacts')
+  // }, [isAuth, navigate])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -22,6 +22,12 @@ const LoginPage = () => {
         password: event.target.password.value,
       })
     )
+  
+    .unwrap().then(() => {
+      getContactsThunk()
+      navigate('/contacts')
+    })
+      .catch(error => console.log(error))
   };
 
   return (
