@@ -7,7 +7,6 @@ const initialState = {
   isLoading: false,
   error: '',
   user: null,
-  profile: [],
 };
 
 const handlePending = (state) => {
@@ -22,9 +21,10 @@ const handleFulfilled = (state, { payload }) => {
 };
 
 const getFulfilledProfile = (state, { payload }) => {
+  console.log(payload);
   state.isLoading = false;
   state.error = '';
-  state.profile.items = payload;
+  state.user = payload;
 };
 
 const handleRejected = (state, { payload }) => {

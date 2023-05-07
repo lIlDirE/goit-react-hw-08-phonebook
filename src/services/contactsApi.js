@@ -10,16 +10,15 @@ const setToken = token => {
 	delete axios.defaults.headers.common['Authorization'];
   };
 
-export const getContacts = async (token) => {
-  setToken(token)
-
-  try {
-    const {data} = await axios.get('/contacts');
-    return data;
-  } catch (error) {
-    return Promise.reject(error.message);
-  }
-};
+  export const getContacts = async token => {
+    setToken(token);
+    try {
+      const { data } = await axios.get('/contacts');
+      return data;
+    } catch (error) {
+      return Promise.reject(error.response.statusText);
+    }
+  };
 
 export const deleteContact = async contactId => {
   console.log(contactId);
@@ -43,7 +42,7 @@ export const addContact = async contact => {
 export const signup = async contact => {
   try {
     const { data } = await axios.post('/users/signup', contact);
-    setToken(data.token);
+    setToken(`Bearer ${data.token}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -53,7 +52,7 @@ export const signup = async contact => {
 export const login = async contact => {
   try {
     const { data } = await axios.post('/users/login', contact);
-    setToken(data.token);
+    setToken(`Bearer ${data.token}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -63,6 +62,7 @@ export const login = async contact => {
 export const logout = async () => {
   try {
     await axios.post('/users/logout');
+    dellToken();
   } catch (error) {
     return Promise.reject(error.message);
   }
@@ -70,11 +70,11 @@ export const logout = async () => {
 
 export const currentUser = async token => {
   try {
-    setToken(token);
+    setToken(`Bearer ${token}`);
     const { data } = await axios.get('/users/current');
-
     return data;
   } catch (error) {
+    dellToken();
     return Promise.reject(error.message);
   }
 };

@@ -17,7 +17,6 @@ export function App() {
   const dispatch = useDispatch();
   const token = useSelector(state => state.signup.token);
 
-
   useEffect(() => {
     token &&
       dispatch(currentUserThunk(token))
@@ -25,11 +24,12 @@ export function App() {
         .then(() => {
           dispatch(getContactsThunk(token))
             .unwrap()
+  
             .catch(error => {
               if (error.message === 'Unauthorized') {
                 toast.error(error.message);
                 dispatch(logout());
-              } else toast.error('Sorry something went wrong try again');
+              } else console.log(error);
             });
         })
         .catch(error => {
@@ -52,3 +52,27 @@ export function App() {
     </>
   );
 }
+
+
+// useEffect(() => {
+//   token &&
+//     dispatch(currentUserThunk(token))
+//       .unwrap()
+//       .then(() => {
+//         dispatch(getContactsThunk(token))
+//           .unwrap()
+
+//           .catch(error => {
+//             if (error.message === 'Unauthorized') {
+//               toast.error(error.message);
+//               dispatch(logout());
+//             } else console.log(error);
+//           });
+//       })
+//       .catch(error => {
+//         if (error.message === 'Unauthorized') {
+//           toast.error(error.message);
+//           dispatch(logout());
+//         } else toast.error('Sorry something went wrong try again');
+//       });
+// }, [dispatch, token]);
