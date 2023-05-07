@@ -1,4 +1,4 @@
-import { getContactsThunk, loginThunk } from '../thunk';
+import { getContactsThunk, loginThunk } from '../../store/thunk';
 
 const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 
@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   error: '',
   user: null,
+  profile: [],
 };
 
 const handlePending = (state) => {
@@ -23,7 +24,7 @@ const handleFulfilled = (state, { payload }) => {
 const getFulfilledProfile = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
-  state.profile = payload.data;
+  state.profile.items = payload;
 };
 
 const handleRejected = (state, { payload }) => {

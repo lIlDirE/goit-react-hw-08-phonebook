@@ -1,4 +1,4 @@
-import { Header } from "components/ContactList/Header/Header";
+import { Header } from "components/Header/Header";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {

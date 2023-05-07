@@ -15,7 +15,6 @@ export const getContacts = async (token) => {
 
   try {
     const {data} = await axios.get('/contacts');
-	console.log(data);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -23,6 +22,7 @@ export const getContacts = async (token) => {
 };
 
 export const deleteContact = async contactId => {
+  console.log(contactId);
   try {
     const response = await axios.delete(`/contacts/${contactId}`);
     return response.data;
@@ -53,7 +53,7 @@ export const signup = async contact => {
 export const login = async contact => {
   try {
     const { data } = await axios.post('/users/login', contact);
-    setToken(`Bearer ${data.token}`);
+    setToken(data.token);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

@@ -11,14 +11,16 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { TextField } from '@mui/material';
+import background from "../../img/background.jpg";
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/store/thunk';
 import { toast } from 'react-toastify';
-import { Header } from 'components/ContactList/Header/Header';
-import { TextField } from '@mui/material';
+import { Header } from 'components/Header/Header';
+
 
 const LoginPage = () => {
 	const theme = createTheme();
@@ -31,8 +33,8 @@ const LoginPage = () => {
     event.preventDefault();
     dispatch(
       loginThunk({
-        email,
-        password,
+        email: event.target.elements.email.value,
+        password: event.target.elements.password.value,
       })
     )
     .unwrap().then(() => {
@@ -58,7 +60,7 @@ const LoginPage = () => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${background})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -87,6 +89,7 @@ const LoginPage = () => {
                 margin="normal"
                 required
                 fullWidth
+                value={email}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -98,6 +101,7 @@ const LoginPage = () => {
                 margin="normal"
                 required
                 fullWidth
+                value={password}
                 name="password"
                 label="Password"
                 type="password"
@@ -116,14 +120,9 @@ const LoginPage = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Log In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
                     {"Don't have an account? Sign Up"}
@@ -141,33 +140,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage
-
-
-    // {/* <div>
-    //   <h1>Login</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <label htmlFor="email">Email:</label>
-    //     <input
-    //       type="email"
-    //       id="email"
-    //       value={email}
-    //       onChange={event => setEmail(event.target.value)}
-    //       required
-    //     />
-    //     <br />
-
-    //     <label htmlFor="password">Password:</label>
-    //     <input
-    //       type="password"
-    //       id="password"
-    //       value={password}
-    //       onChange={event => setPassword(event.target.value)}
-    //       required
-    //     />
-    //     <br />
-
-    //     <button type="submit">LOGIN</button>
-    //     <button onClick={() => navigate('/signUp')}>SIGNUP</button>
-
-    //   </form>
-    // </div> */}

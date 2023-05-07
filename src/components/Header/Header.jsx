@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'redux/store/auth/authSlice';
+import { logOut } from 'redux/allSlice/authSlice/authSlice';
 import { dellToken } from 'services/contactsApi';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -57,5 +57,5 @@ export const Header = () => {
         </AppLogoutContainer>
       </AppMainContainer>
     </AppBar>
-  );
+  )
 };

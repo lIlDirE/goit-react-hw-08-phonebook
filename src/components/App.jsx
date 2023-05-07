@@ -15,7 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
   const dispatch = useDispatch();
-  const token = useSelector(state => state.signup.access_token);
+  const token = useSelector(state => state.signup.token);
+
 
   useEffect(() => {
     token &&

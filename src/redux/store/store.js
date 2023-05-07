@@ -11,9 +11,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { filterReducer } from 'redux/filterSlice/filterSlice';
-import { contactReducer } from 'redux/contactSlice/contactSlice';
-import { authReducer } from './auth/authSlice';
+import { filterReducer } from 'redux/allSlice/filterSlice/filterSlice';
+import { contactReducer } from 'redux/allSlice/contactSlice/contactSlice';
+import { authReducer } from '../allSlice/authSlice/authSlice';
 
 const rootReducer = combineReducers({
   contact: contactReducer,
