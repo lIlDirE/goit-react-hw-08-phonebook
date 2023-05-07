@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from 'services/contactsApi';
 import { toast } from 'react-toastify';
+import { Header } from 'components/ContactList/Header/Header';
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
@@ -15,7 +16,6 @@ const RegistrationPage = () => {
       email: event.target.email.value,
       password: event.target.password.value,
     };
-
       signup(newUser)
       .then(()=> {
         toast.success('User created')
@@ -25,8 +25,10 @@ const RegistrationPage = () => {
   };
 
   return (
+	<>	
+	<Header />
     <div>
-      <h1>Регистрация</h1>
+      <h1>Registartion</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">username:</label>
         <input
@@ -61,7 +63,10 @@ const RegistrationPage = () => {
         <button type="submit">SIGNUP</button>
       </form>
     </div>
+	</>
   );
 };
 
 export default RegistrationPage;
+
+

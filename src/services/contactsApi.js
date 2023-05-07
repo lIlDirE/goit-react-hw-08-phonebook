@@ -12,8 +12,10 @@ const setToken = token => {
 
 export const getContacts = async (token) => {
   setToken(token)
+
   try {
     const {data} = await axios.get('/contacts');
+	console.log(data);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

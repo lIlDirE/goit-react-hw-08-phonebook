@@ -1,8 +1,9 @@
 import Layout from './Layout/Layout.jsx';
 import LoginPage from './pages/Login.jsx';
+import RegistrationPage from './pages/RegistrationPage.jsx';
 import { Contacts } from './pages/Contacts.jsx';
 import { Route, Routes } from 'react-router-dom';
-import RegistrationPage from './pages/RegistrationPage.jsx';
+
 
 import { currentUserThunk, getContactsThunk } from 'redux/store/thunk.js';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,8 +43,8 @@ export function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}></Route>
-        <Route path="/signUp" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<RegistrationPage />} />
+		<Route path="/login" element={<LoginPage />} />
         <Route path="/contacts" element={<Contacts />} />
       </Routes>
       <ToastContainer />

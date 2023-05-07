@@ -36,8 +36,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logOut(state) {
-      state.profile = null;
-      state.access_token = '';
+      state.token = null;
+      state.user = '';
     },
   },
   extraReducers: builder => {
