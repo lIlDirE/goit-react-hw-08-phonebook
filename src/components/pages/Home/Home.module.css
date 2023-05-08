@@ -1,0 +1,11 @@
+
+
+  .background {
+    background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+    max-width: 100vw;
+    height: 100vh;
+  }
+
+  body {
+    overflow: hidden;
+  }

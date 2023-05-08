@@ -16,6 +16,15 @@ align-items: center;
 
 `;
 
+export const AppLeftContainer = styled.div`
+
+align-items: center;
+  display: flex;
+
+`;
+
+
+
 export const AppLogoutContainer = styled.div`
 width: 200px;
 justify-content: space-around;
@@ -44,12 +53,11 @@ color: #fff;
   align-items: center;
 `;
 
-export const userText = styled.h6`
-
-font-family: "Roboto","Helvetica","Arial",sans-serif;
-font-weight: 500;
-font-size: 1.25rem;
-line-height: 1.6;
-letter-spacing: 0.0075em;
-margin-bottom: 0.35em;
+export const UserText = styled.h4`
+margin: 0;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
 `
