@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom';
 // import { Header } from 'components/Header/Header';
 
 import Loader from '../Loader/Loader';
-import HomePage from 'components/pages/Home';
+import HomePage from 'components/pages/Home/Home';
+
 
 const Layout = () => {
   return (

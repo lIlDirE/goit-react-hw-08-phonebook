@@ -2,11 +2,11 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/allSlice/authSlice/authSlice';
 import { dellToken } from 'services/contactsApi';
 import { useNavigate } from 'react-router-dom';
+import { clearContacts } from 'redux/allSlice/contactSlice/contactSlice';
 import {
   AppContainer,
   AppLogoutContainer,
@@ -19,10 +19,12 @@ export const Header = () => {
   const navigate = useNavigate();
   const token = useSelector(state => state.signup.token);
   const userName = useSelector(state => state.signup.user);
+  console.log(userName);
 
   const handleLogOut = () => {
     dispatch(logOut());
     dellToken();
+    dispatch(clearContacts());
     navigate('/');
   };
 
@@ -30,32 +32,24 @@ export const Header = () => {
     <AppBar position="static">
       <AppMainContainer>
         <AppContainer>
-          <StyledNavLink to="/">
-            Home
-          </StyledNavLink>
-		  {token && (
-          <StyledNavLink to="/contacts">
-		  Contacts
-		</StyledNavLink>
-		  )}
-
+          <StyledNavLink to="/">Phonebook</StyledNavLink>
         </AppContainer>
 
-        <AppLogoutContainer>
 
           {token !== null && (
-            <>
+                    <AppLogoutContainer>
+              <userText variant="h6" gutterBottom>
+                {userName}
+              </userText>
               <Stack spacing={2} direction="row">
                 <Button variant="contained" onClick={handleLogOut}>
                   Logout
                 </Button>
               </Stack>
-              <h3>{userName}</h3>
-            </>
-          ) 
-		}
-        </AppLogoutContainer>
+              </AppLogoutContainer>
+          )}
+
       </AppMainContainer>
     </AppBar>
-  )
+  );
 };

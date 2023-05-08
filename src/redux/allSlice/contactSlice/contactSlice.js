@@ -32,9 +32,15 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+
 export const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: initialState,
+  initialState,
+  reducers: {
+    clearContacts: state => {
+      state.items = []; // очистить массив контактов
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
@@ -68,5 +74,5 @@ export const contactsSlice = createSlice({
 });
 
 export const contactReducer = contactsSlice.reducer;
-
-export const { addContact, removeContact } = contactsSlice.actions;
+// export const { clearContacts } = contactSlice.actions;
+export const { addContact, removeContact, clearContacts } = contactsSlice.actions;

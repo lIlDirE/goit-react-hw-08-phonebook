@@ -20,12 +20,11 @@ const handleFulfilled = (state, { payload }) => {
   state.user = payload.user.name;
 };
 
-const getFulfilledProfile = (state, { payload }) => {
-  console.log(payload);
-  state.isLoading = false;
-  state.error = '';
-  state.user = payload;
-};
+// const getFulfilledProfile = (state, { payload }) => {
+//   state.isLoading = false;
+//   state.error = '';
+//   // state.items = payload;
+// };
 
 const handleRejected = (state, { payload }) => {
   state.isLoading = false;
@@ -37,6 +36,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logOut(state) {
+
       state.token = null;
       state.user = '';
     },
@@ -44,7 +44,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, handleFulfilled)
-      .addCase(getContactsThunk.fulfilled, getFulfilledProfile)
+      // .addCase(getContactsThunk.fulfilled, getContactsThunk.fulfilled) //getFulfilledProfile
       .addMatcher(
         isAnyOf(loginThunk.pending, getContactsThunk.pending),
         handlePending

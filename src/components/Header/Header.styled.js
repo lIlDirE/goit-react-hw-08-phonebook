@@ -2,32 +2,54 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const AppMainContainer = styled.form`
-  padding: 15px;
-  align-items: baseline;
+  padding: 0 15px;
+  height: 50px;
+  align-items: space-betwen;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 `;
 
 export const AppContainer = styled.div`
-  padding: 15px;
-  align-items: baseline;
+
+align-items: center;
   display: flex;
+
 `;
 
 export const AppLogoutContainer = styled.div`
-  justify-content: space-between;
+width: 200px;
+justify-content: space-around;
   align-items: center;
   display: flex;
-  min-width: 150px;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: black;
+  color: #fff;
   font-size: 1.17em;
   text-decoration: none;
-  margin: 10px;
-  &.active {
-    color: #fff;
-    font-weight: bold;
-  }
+  height: 40px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
 `;
+
+
+export const StyledName = styled(NavLink)`
+color: #fff;
+  font-size: 1.17em;
+  text-decoration: none;
+  height: 40px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+`;
+
+export const userText = styled.h6`
+
+font-family: "Roboto","Helvetica","Arial",sans-serif;
+font-weight: 500;
+font-size: 1.25rem;
+line-height: 1.6;
+letter-spacing: 0.0075em;
+margin-bottom: 0.35em;
+`

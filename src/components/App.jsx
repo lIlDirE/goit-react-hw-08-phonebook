@@ -18,7 +18,7 @@ export function App() {
   const token = useSelector(state => state.signup.token);
 
   useEffect(() => {
-    token &&
+    token && 
       dispatch(currentUserThunk(token))
         .unwrap()
         .then(() => {
@@ -35,6 +35,7 @@ export function App() {
         .catch(error => {
           if (error.message === 'Unauthorized') {
             toast.error(error.message);
+            console.log('object');
             dispatch(logout());
           } else toast.error('Sorry something went wrong try again');
         });

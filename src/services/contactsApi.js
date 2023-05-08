@@ -21,7 +21,6 @@ const setToken = token => {
   };
 
 export const deleteContact = async contactId => {
-  console.log(contactId);
   try {
     const response = await axios.delete(`/contacts/${contactId}`);
     return response.data;
@@ -63,6 +62,7 @@ export const logout = async () => {
   try {
     await axios.post('/users/logout');
     dellToken();
+
   } catch (error) {
     return Promise.reject(error.message);
   }

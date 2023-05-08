@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 
 const ContactList = () => {
 
-  const allStates = useSelector(state => state.items)
-  console.log(allStates);
   const filter = useSelector(state => state.filter);
-  const contacts = useSelector(state => state.signup.profile);
+  const contacts = useSelector(state => state.contact.items);
   const visibleContacts = contacts.filter(el =>
     el.name.toLowerCase().includes(filter.toLowerCase())
   )

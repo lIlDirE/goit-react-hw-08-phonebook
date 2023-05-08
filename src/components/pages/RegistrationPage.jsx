@@ -41,45 +41,10 @@ const RegistrationPage = () => {
   return (
     <>
       <Header />
-      {/* <div>
-      <h1>Registartion</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={event => setUsername(event.target.value)}
-          required
-        />
-        <br />
 
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-          required
-        />
-        <br />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-          required
-        />
-        <br />
-
-        <button type="submit">SIGNUP</button>
-      </form>
-    </div> */}
 
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ height: '97vh' }}>
           <CssBaseline />
           <Grid
             item
