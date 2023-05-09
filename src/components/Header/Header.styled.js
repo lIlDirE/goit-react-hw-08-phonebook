@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 export const AppMainContainer = styled.form`
   padding: 0 15px;
   height: 50px;
-  align-items: space-betwen;
   display: flex;
   justify-content: space-between;
 `;
