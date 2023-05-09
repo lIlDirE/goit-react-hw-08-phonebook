@@ -10,23 +10,17 @@ export const AppMainContainer = styled.form`
 `;
 
 export const AppContainer = styled.div`
-
 align-items: center;
   display: flex;
-
 `;
 
 export const AppLeftContainer = styled.div`
-
 align-items: center;
   display: flex;
-
 `;
 
-
-
 export const AppLogoutContainer = styled.div`
-width: 200px;
+width: 300px;
 justify-content: space-around;
   align-items: center;
   display: flex;

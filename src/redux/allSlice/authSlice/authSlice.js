@@ -17,7 +17,7 @@ const handleFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
   state.token = payload.token;
-  state.user = payload.user.name;
+  state.user = payload.user.email;
 };
 
 // const getFulfilledProfile = (state, { payload }) => {
