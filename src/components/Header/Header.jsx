@@ -14,7 +14,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const token = useSelector(state => state.signup.token);
   const userName = useSelector(state => state.signup.user);
-  console.log(userName);
+  console.log(token);
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -30,14 +30,14 @@ export const Header = () => {
         <AppContainer>
             <StyledNavLink to="/">Phonebook</StyledNavLink>
           </AppContainer>
-          {token !== null && (
+          {token !== "" && (
             <AppContainer>
               <StyledNavLink to="/contacts">Contacts</StyledNavLink>
             </AppContainer>
           )}
         </AppLeftContainer>
 
-        {token !== null && (
+        {token !== "" && (
           <AppLogoutContainer>
             <UserText variant="h6">
               {userName}
