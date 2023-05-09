@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { logout } from 'services/contactsApi.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 
 export function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export function App() {
         <Route path="/" element={<Layout />}></Route>
         <Route path="/signup" element={<RegistrationPage />} />
 		<Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/contacts" element={<PrivateRoute><Contacts /></PrivateRoute>} />
       </Routes>
       <ToastContainer />
     </>
