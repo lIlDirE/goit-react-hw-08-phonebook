@@ -14,7 +14,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const token = useSelector(state => state.signup.token);
   const userName = useSelector(state => state.signup.user);
-  console.log(token);
 
   const handleLogOut = () => {
     dispatch(logOut());
