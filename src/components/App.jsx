@@ -13,6 +13,7 @@ import { logout } from 'services/contactsApi.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import PublicRoute from './PublicRoute/PublicRoute.jsx';
 
 export function App() {
   const dispatch = useDispatch();
@@ -44,12 +45,13 @@ export function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
-        <Route path="/signup" element={<RegistrationPage />} />
-		<Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<PublicRoute><Layout /></PublicRoute>}></Route>
+        <Route path="/signup" element={<PublicRoute><RegistrationPage /></PublicRoute>} />
+		<Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/contacts" element={<PrivateRoute><Contacts /></PrivateRoute>} />
       </Routes>
       <ToastContainer />
     </>
   );
 }
+
